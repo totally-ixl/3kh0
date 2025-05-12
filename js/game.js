@@ -52,6 +52,6 @@ window.addEventListener("resize", () => {
 function loadGame() {
   const urlParams = new URLSearchParams(window.location.search)
   const game = urlParams.get("game")
-  var iframe = "game/" + game + ".html"
+  var iframe = "projects/" + game + "/index.html"
   document.getElementById("gameFrame").src = iframe
 }
