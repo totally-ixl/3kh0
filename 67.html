@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/g.css">
+  </head>
+
+  <body>
+    <br /><br />
+    <iframe src="" id="gameFrame"></iframe>
+    <br /><br />
+    <button id="fullscreenBtn" onclick="toggleAspectRatio()">
+      <i id="fullscreenIcon" data-feather="maximize"></i>
+    </button>
+
+    <div class="CTcontainer" id="CTPOPUP">
+    
+    <button class="x" onclick="document.getElementById('CTPOPUP').style.display = 'none';"><i data-feather="x-square"></i></button>
+    
+    <h2>Cloak Tab:</h2>
+    <h4>Disguise tab as another page from below:</h4>
+    <div class="btncontainer">
+<button class="option" onclick="setCloakTab('ixl')">
+      <img src="https://www.google.com/s2/favicons?domain=ixl.com&sz=256" />
+    </button>
+    <button class="option" onclick="setCloakTab('google')">
+      <img src="https://www.google.com/s2/favicons?domain=google.com&sz=256" />
+    </button>
+    <button class="option" onclick="setCloakTab('classlink')">
+      <img src="https://www.google.com/s2/favicons?domain=classlink.com&sz=256" />
+    </button>
+    <button class="option" onclick="setCloakTab('powerschool')">
+      <img src="https://www.google.com/s2/favicons?domain=powerschool.com&sz=256" />
+    </button></div>
+  </div>
+
+    <script>
+      feather.replace()
+    </script>
+
+    <script src="js/g.js"></script>
+
+    <footer style="text-align: center; margin-top: 20px; font-size: 14px;">
+      Powered by 3kh0 <a style="text-decoration:none;color:#0077b6;" onclick="document.getElementById('CTPOPUP').style.display = 'inline';">Cloak Tab</a>
+    </footer>
+  </body>
+</html>
