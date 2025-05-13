@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/g.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Totally IXL</title>
+    <style>
+#game-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cardContainer {
+    width: auto;
+    text-decoration: none;
+}
+        
+        .card {
+            width: 85px;
+            height: 85px;
+            background: linear-gradient(135deg, #ffffff 30%, #f0f0f0 70%);
+            border-radius: 10px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 2px solid transparent;
+            transition: 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border: 2px solid #a45ee5;
+            box-shadow: 0 8px 40px 0 rgba(164, 94, 229, 0.7);
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 90px;
+            height: 90px;
+        }
+
+        .cardContainer {
+            display: flex;
+            gap: 20px;
+            text-decoration: none;
+            width: 85px;
+        }
+
+        .btnContainer {
+            display: inline-block;
+            gap: 20px;
+            text-decoration: none;
+            width: 85px;
+            text-align: center;
+        }
+
+        .gameTXT {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="search" placeholder="Search games..." onkeyup="searchGames()" />
+    <div id="loader">Loading...</div>
+    <div id="game-container"></div>
+
+    <script>
+        let games = [];
+
+        fetch("config/games.json")
+          .then((response) => response.json())
+          .then((data) => {
+            games = data;
+            const container = document.getElementById("game-container");
+            data.forEach((project) => {
+              const cardContainer = document.createElement("div");
+              cardContainer.className = "cardContainer";
+
+              const btnContainer = document.createElement("div");
+              btnContainer.className = "btnContainer";
+
+              const link = document.createElement("a");
+              link.href = project.link;
+
+              const button = document.createElement("button");
+              button.className = "card";
+
+              const img = document.createElement("img");
+              img.src = project.imgSrc;
+              img.alt = `${project.title} Icon`;
+
+              const text = document.createElement("p");
+              text.className = "gameTXT";
+              text.textContent = project.title;
+
+              button.appendChild(img);
+              link.appendChild(button);
+              btnContainer.appendChild(link);
+              btnContainer.appendChild(text);
+              cardContainer.appendChild(btnContainer);
+              container.appendChild(cardContainer);
+            });
+            document.getElementById("loader").style.display = "none";
+          })
+          .catch((error) => console.error("Error:", error));
+
+        function searchGames() {
+          const input = document.getElementById("search");
+          const filter = input.value.toUpperCase();
+          const container = document.getElementById("game-container");
+          container.innerHTML = "";
+          games
+            .filter((game) => game.title.toUpperCase().includes(filter))
+            .forEach((project) => {
+              const cardContainer = document.createElement("div");
+              cardContainer.className = "cardContainer";
+
+              const btnContainer = document.createElement("div");
+              btnContainer.className = "btnContainer";
+
+              const link = document.createElement("a");
+              link.href = project.link;
+
+              const button = document.createElement("button");
+              button.className = "card";
+
+              const img = document.createElement("img");
+              img.src = project.imgSrc;
+              img.alt = `${project.title} Icon`;
+              img.loading = "lazy";
+
+              const text = document.createElement("p");
+              text.className = "gameTXT";
+              text.textContent = project.title;
+
+              button.appendChild(img);
+              link.appendChild(button);
+              btnContainer.appendChild(link);
+              btnContainer.appendChild(text);
+              cardContainer.appendChild(btnContainer);
+              container.appendChild(cardContainer);
+            });
+        }
+    </script>
+
+   <div class="CTcontainer" id="CTPOPUP">
+    
+    <button class="x" onclick="document.getElementById('CTPOPUP').style.display = 'none';"><i data-feather="x-square"></i></button>
+    
+    <h2>Cloak Tab:</h2>
+    <h4>Disguise tab as another page from below:</h4>
+    <div class="btncontainer">
+<button class="option" onclick="setCloakTab('ixl')">
+      <img src="https://www.google.com/s2/favicons?domain=ixl.com&sz=256" />
+    </button>
+    <button class="option" onclick="setCloakTab('google')">
+      <img src="https://www.google.com/s2/favicons?domain=google.com&sz=256" />
+    </button>
+    <button class="option" onclick="setCloakTab('classlink')">
+      <img src="https://www.google.com/s2/favicons?domain=classlink.com&sz=256" />
+    </button>
+    <button class="option" onclick="setCloakTab('powerschool')">
+      <img src="https://www.google.com/s2/favicons?domain=powerschool.com&sz=256" />
+    </button></div>
+  </div>
+
+    <script>
+      feather.replace()
+    </script>
+
+    <script src="js/cloak.js"></script>
+
+    <footer style="text-align: center; margin-top: 20px; font-size: 14px;">
+      Powered by 3kh0 <a style="text-decoration:none;color:#0077b6;cursor:pointer;" onclick="document.getElementById('CTPOPUP').style.display = 'inline';">Cloak Tab</a>
+    </footer>
+
+</body>
+</html>
